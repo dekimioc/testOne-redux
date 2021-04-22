@@ -1,0 +1,18 @@
+.error-message-container {
+    -webkit-box-shadow: 10px 3px 24px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 3px 24px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 3px 24px -9px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    padding: 30px;
+    border: 10px solid #ff6666;
+    margin-top: 10rem !important;
+    width: 400px;
+    max-width: 100%;
+    margin: 0 auto;
+  .color-error {
+    color: #e60000;
+    text-align: center;
+    word-break: break-all;
+    font-family: "Helvetica";
+  }
+}
