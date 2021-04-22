@@ -1,9 +1,11 @@
-import {GET_USERS, LOADING_USERS, PAGE_NUMBER} from '../types'
+import {CLICKED_ELEMENT, CLICKED_IMAGE, GET_USERS, LOADING_USERS, PAGE_NUMBER} from '../types'
 
 const initialState = {
     users: [],
     pageNumber: 1,
-    isLoaded: false
+    isLoaded: false,
+    clickedImage: null,
+    clickedElement: null
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -22,6 +24,16 @@ export const usersReducer = (state = initialState, action) => {
         return {
             ...state,
             pageNumber: action.number
+        }
+        case CLICKED_ELEMENT:
+            return {
+            ...state,
+            clickedElement: action.id,
+        }
+        case CLICKED_IMAGE:
+            return {
+            ...state,
+            clickedImage: action.id
         }
         default: return state
     }

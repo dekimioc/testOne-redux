@@ -1,4 +1,4 @@
-import {GET_USERS, USERS_ERROR, LOADING_USERS, PAGE_NUMBER} from '../types'
+import {GET_USERS, USERS_ERROR, LOADING_USERS, PAGE_NUMBER, CLICKED_ELEMENT, CLICKED_IMAGE} from '../types'
 
 import axios from 'axios'
 
@@ -33,5 +33,19 @@ export const pageNumberHandler = number => {
      return {
         type: PAGE_NUMBER,
         number: number,
+  };
+}
+
+export const clickedRowHandler = id => {
+     return {
+        type: CLICKED_ELEMENT,
+        id: id,
+  };
+}
+
+export const clickedImgHandler = id => {
+     return {
+        type: CLICKED_IMAGE,
+        id: id,
   };
 }

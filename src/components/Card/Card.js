@@ -1,23 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import {clickedRowHandler, clickedImgHandler} from '../../redux/actions/actions';
 import PropTypes from 'prop-types'
 
 import './Card.style.scss'
 
 const Card = ({data}) => {
-    const [clickedElement, setClickedEl] = useState(null)
-    const [clickedImage, setClickedImage] = useState(null)
+    const clickedElement = useSelector(state => state.usersReducer.clickedElement)
+    const clickedImage = useSelector(state => state.usersReducer.clickedImage)
 
-    const clickedElementHandler = (event) => {
-        setClickedEl(event)
-        setClickedImage(event)
+    const dispatch = useDispatch();
+
+    const clickedElementHandler = event => {
+        dispatch(clickedRowHandler(event))
+        dispatch(clickedImgHandler(event))
     }
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setClickedImage(false);
+            dispatch(clickedImgHandler(false));
         }, 1100);
         return () => clearTimeout(timer);
-    }, [clickedImage]);
+    }, [dispatch, clickedImage]);
  
     return(
         data.map(e => <div 
