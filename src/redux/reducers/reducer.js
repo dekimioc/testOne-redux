@@ -1,11 +1,13 @@
-import {CLICKED_ELEMENT, CLICKED_IMAGE, GET_USERS, LOADING_USERS, PAGE_NUMBER} from '../types'
+import {CLICKED_ELEMENT, CLICKED_IMAGE, ERROR_MESSAGE, GET_USERS, LOADING_USERS, PAGE_NUMBER} from '../types'
 
 const initialState = {
     users: [],
     pageNumber: 1,
     isLoaded: false,
     clickedImage: null,
-    clickedElement: null
+    clickedElement: null,
+    errorMessage: '',
+    errorDetailsMessage: ''
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -18,7 +20,7 @@ export const usersReducer = (state = initialState, action) => {
         case LOADING_USERS:
             return {
                 ...state,
-                isLoaded: true
+                isLoaded: action.value
             }
         case PAGE_NUMBER:
         return {
@@ -34,6 +36,12 @@ export const usersReducer = (state = initialState, action) => {
             return {
             ...state,
             clickedImage: action.id
+        }
+        case ERROR_MESSAGE:
+            return {
+            ...state,
+            errorMessage: action.errMsg,
+            errorDetailsMessage: action.errMsgDetails
         }
         default: return state
     }
