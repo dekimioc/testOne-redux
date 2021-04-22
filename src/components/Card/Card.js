@@ -26,7 +26,7 @@ const Card = ({imgSrc, userName, alt, elId}) => {
     return(
         <div 
             className={`user-card col-12 pt-3 pb-3 pl-0 d-flex flex-md-row align-items-center position-relative ${elId === clickedElement ? "clickedRow" : ''}`} 
-            onClick={event => clickedElementHandler(elId)}>
+            onClick={() => clickedElementHandler(elId)}>
             <img className="user-image mr-3" src={imgSrc} alt={alt}/>
             <p className="mb-0 card-name">{userName}</p>
             <img className={`fading-image ${elId === clickedImage ? "animation" : ""}`} src={imgSrc} alt={alt}/>

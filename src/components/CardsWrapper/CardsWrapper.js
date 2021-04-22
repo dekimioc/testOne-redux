@@ -39,7 +39,13 @@ const CardsWrapper = () => {
 
     return (
         !errorMessage && errorMessage.length === 0 ? <div className="container-fluid" id="cards-wrapper">
-            {isLoaded ? users.map(e => <Card key={e.id} imgSrc={e.owner.avatar_url} userName={Object.keys(e.files)[0]} alt={e.owner.login} elId={e.id} />) : <Loader />} 
+            {isLoaded ? users.map(e => <Card 
+                                            key={e.id} 
+                                            imgSrc={e.owner.avatar_url} 
+                                            userName={Object.keys(e.files)[0]} 
+                                            alt={e.owner.login} 
+                                            elId={e.id} />
+                                    ) : <Loader />} 
             <PaginationComponent changeCurrentPage={(numPage) => changeCurrentPage(numPage)} />
         </div> : <ErrorModal errorText={errorMessage} errorDetails={errorDetailsMessage} />
     )
