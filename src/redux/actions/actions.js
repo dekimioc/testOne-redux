@@ -9,30 +9,26 @@ export const isLoadedHandler = value => {
   };
 }
 
+export const usersHandler = (event) => {
+    return {
+        type: GET_USERS,
+        event: event
+    }
+}
+
 export const getUsers = () => async (dispatch, getState) => {
     try{
         const res = await axios.get(`${process.env.REACT_APP_GIT_URL}${getState().usersReducer.pageNumber}`)
         if(res.status === 200) {
-            dispatch(dispatch( {
-                type: GET_USERS,
-                payload: res.data
-        }));
+            dispatch(usersHandler(res.data))
             dispatch(isLoadedHandler(true))
         }
     }
     catch(err){
         if(err.response.status === 403) {
-            dispatch( {
-                type: ERROR_MESSAGE,
-                errMsg: err.response.status,
-                errMsgDetails: err.response.data.message
-        })
+           dispatch(errorsHandler(err.response.status, err.response.data.message))
         } else if(err.response.status === 404) {
-             dispatch( {
-                type: ERROR_MESSAGE,
-                errMsg: err.response.status,
-                errMsgDetails: err.response.statusText
-        })
+             dispatch(errorsHandler(err.response.status, err.response.statusText))
         }
     }
 }
@@ -56,4 +52,12 @@ export const clickedImgHandler = id => {
         type: CLICKED_IMAGE,
         id: id,
   };
+}
+
+export const errorsHandler = (errorText, errorDetailsText) => {
+    return {
+        type: ERROR_MESSAGE,
+        errorText: errorText,
+        errorDetailsText: errorDetailsText
+    }
 }

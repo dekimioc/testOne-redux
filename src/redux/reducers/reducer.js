@@ -15,7 +15,7 @@ export const usersReducer = (state = initialState, action) => {
         case GET_USERS:
             return {
                 ...state,
-                users: action.payload
+                users: action.event
             }
         case LOADING_USERS:
             return {
@@ -40,8 +40,8 @@ export const usersReducer = (state = initialState, action) => {
         case ERROR_MESSAGE:
             return {
             ...state,
-            errorMessage: action.errMsg,
-            errorDetailsMessage: action.errMsgDetails
+            errorMessage: action.errorText,
+            errorDetailsMessage: action.errorDetailsText
         }
         default: return state
     }
